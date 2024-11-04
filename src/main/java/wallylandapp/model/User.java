@@ -4,7 +4,7 @@
  */
 package wallylandapp.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * User class for the WallyLand application.
@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class User {
 
-    enum Role {
+    public enum Role {
         ADMIN, EMPLOYEE, CUSTOMER
     }
 
@@ -21,7 +21,7 @@ public class User {
     private String name;
     private String email;
     private Role role;
-    private Date dob;
+    private LocalDate dob;
 
     /**
      * Constructor for User, including admin, employee, and customer.
@@ -30,8 +30,12 @@ public class User {
      * @param role Role of the user
      * @param dob Date of birth of the user
      */
-    public User(String name, String email, Role role, Date dob) {
-
+    public User(String name, String email, Role role, LocalDate dob) {
+        this.userId = "U" + System.currentTimeMillis();
+        this.name = name;
+        this.email = email;
+        this.role = role;
+        this.dob = dob;
     }
     
     /**
@@ -94,7 +98,7 @@ public class User {
      * Get the date of birth of the user.
      * @return The date of birth of the user
      */
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
@@ -102,7 +106,7 @@ public class User {
      * Set the date of birth of the user.
      * @param dob The date of birth of the user to set
      */
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 }

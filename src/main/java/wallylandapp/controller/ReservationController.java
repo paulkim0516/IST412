@@ -4,10 +4,17 @@
  */
 package wallylandapp.controller;
 
+import wallylandapp.model.Reservation;
+import wallylandapp.view.ReservationView;
+
 /**
  *
  * @author paulk
  */
 public class ReservationController {
-    
+    public ReservationController(Reservation data, ReservationView view) {
+        
+    }
+
+
 }
