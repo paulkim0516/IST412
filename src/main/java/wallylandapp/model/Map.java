@@ -1,21 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package wallylandapp.model;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author paulk
+ * Represents a map with an image URI and a list of map items.
  */
 public class Map {
     private String imageUri;
     private ArrayList<MapItem> mapItems;
 
+    /**
+     * Constructs a new Map object.
+     * @param imageUri the image URI of the map
+     * @param mapItems the list of map items
+     */
     public Map(String imageUri, ArrayList<MapItem> mapItems) {
-
+        this.imageUri = imageUri;
+        this.mapItems = mapItems;
     }
 
     /**
@@ -60,7 +61,7 @@ public class Map {
      * @param mapItem The map item to add.
      */
     public void addMapItem(MapItem mapItem) {
-
+        mapItems.add(mapItem);
     }
 
     /**
@@ -69,6 +70,6 @@ public class Map {
      * @param mapItem The map item to remove.
      */
     public void removeMapItem(MapItem mapItem) {
-
+        mapItems.remove(mapItem);
     }
 }

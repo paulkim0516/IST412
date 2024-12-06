@@ -1,6 +1,6 @@
 package wallylandapp.view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * The MainView class represents the main application view.
@@ -9,7 +9,11 @@ import javax.swing.JFrame;
  */
 public class MainView {
     private JFrame frame;
-    
+    private JMenuBar menuBar;
+    private JMenu navigationMenu;
+    private JMenuItem mapMenuItem;
+    private JMenuItem chatbotMenuItem;
+
     /**
      * Constructs a MainView object with the specified frame.
      */
@@ -17,6 +21,26 @@ public class MainView {
         frame = new JFrame("WallyLand");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
+
+        // Create the menu bar
+        menuBar = new JMenuBar();
+
+        // Create the navigation menu
+        navigationMenu = new JMenu("Menu");
+
+        // Create menu items
+        mapMenuItem = new JMenuItem("Map View");
+        chatbotMenuItem = new JMenuItem("Chatbot View");
+
+        // Add menu items to the navigation menu
+        navigationMenu.add(mapMenuItem);
+        navigationMenu.add(chatbotMenuItem);
+
+        // Add the navigation menu to the menu bar
+        menuBar.add(navigationMenu);
+
+        // Set the menu bar for the frame
+        frame.setJMenuBar(menuBar);
     }
 
     /**
@@ -32,5 +56,21 @@ public class MainView {
      */
     public JFrame getFrame() {
         return frame;
+    }
+
+    /**
+     * Gets the map menu item.
+     * @return the map menu item
+     */
+    public JMenuItem getMapMenuItem() {
+        return mapMenuItem;
+    }
+
+    /**
+     * Gets the chatbot menu item.
+     * @return the chatbot menu item
+     */
+    public JMenuItem getChatbotMenuItem() {
+        return chatbotMenuItem;
     }
 }

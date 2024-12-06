@@ -9,12 +9,11 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.time.LocalDate;
 
 import wallylandapp.model.ChatbotData;
+import wallylandapp.model.MapItem;
 import wallylandapp.view.ChatbotView;
 
 /**
@@ -25,7 +24,6 @@ import wallylandapp.view.ChatbotView;
 public class ChatbotController {
     private ChatbotData data;
     private ChatbotView view;
-    private MainController main;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -36,10 +34,9 @@ public class ChatbotController {
      * @param view the ChatbotView view
      * @param mainController the main controller to communicate with
      */
-    public ChatbotController(ChatbotData data, ChatbotView view, MainController mainController) {
+    public ChatbotController(ChatbotData data, ChatbotView view) {
         this.data = data;
         this.view = view;
-        this.main = mainController;
 
         view.getSendButton().addActionListener(new ActionListener() {
             @Override
@@ -83,6 +80,8 @@ public class ChatbotController {
             e.printStackTrace();
         }
         */
+        
+        view.getChatArea().enableInputMethods(false);
     }
 
     /**
@@ -90,6 +89,9 @@ public class ChatbotController {
      * @param chat the chat message to send
      */
     public void sendChat(String chat) {
+        if (chat.isEmpty()) {
+            return;
+        }
         view.getChatArea().append("User: " + chat + "\n");
 
         // Implement the logic after configuring the server.
@@ -102,7 +104,16 @@ public class ChatbotController {
         */
 
         // For testing purposes, display the chat message in the chat area
-        view.getChatArea().append("Server: " + "Response from server" + "\n");
+        String msg = "";
+        if (chat.contains("ride")) {
+            msg = "What ride do you want to know more about?";
+        } else if (chat.contains("restaurant")) {
+            msg = "Restaurant reservation is currently unavailable.";
+        } else if (chat.contains("report")) {
+            msg = "You can report incidents through (800) 123-4567";
+        }
+        
+        view.getChatArea().append("Server: " + msg + "\n");
     }
 
     /**
@@ -143,7 +154,14 @@ public class ChatbotController {
         }
 
         data.saveChanges();
-        main.showMap();
+    }
+
+    /**
+     * Gets the view of the chatbot
+     * @return the view of the chatbot
+     */
+    public ChatbotView getView() {
+        return view;
     }
 
     /**
@@ -157,5 +175,13 @@ public class ChatbotController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * The method to call when the customer needs assist with something in the park.
+     * @param item The map item the customer has issues with.
+     */
+    public void requestHelp(MapItem item) {
+        view.getChatArea().append("Need help related to " + item.getName() + "\n");
     }
 }

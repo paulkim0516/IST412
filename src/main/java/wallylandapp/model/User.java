@@ -8,13 +8,28 @@ import java.time.LocalDate;
 
 /**
  * User class for the WallyLand application.
- * 
- * @author paulk
+ * Represents a user with a name, email, role, and date of birth.
  */
 public class User {
 
+    /**
+     * Enum for the role of the user.
+     */
     public enum Role {
-        ADMIN, EMPLOYEE, CUSTOMER
+        /**
+         * Represents WallyLand Admin.
+         */
+        ADMIN, 
+
+        /**
+         * Represents WallyLand Employee.
+         */
+        EMPLOYEE, 
+
+        /**
+         * Represents WallyLand Customer.
+         */
+        CUSTOMER
     }
 
     private String userId;

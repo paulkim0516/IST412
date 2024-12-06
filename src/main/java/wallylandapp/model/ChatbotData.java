@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 /**
  * ChatbotData class for the WallyLand application.
- * @author paulk
  */
 public class ChatbotData {
 

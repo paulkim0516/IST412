@@ -12,7 +12,6 @@ import wallylandapp.view.MainView;
 
 /**
  * The main class for the WallyLand application.
- * @author paulk
  */
 public class WallyLandApp {
 
