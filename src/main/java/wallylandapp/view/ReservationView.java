@@ -4,74 +4,58 @@
  */
 package wallylandapp.view;
 
-import wallylandapp.model.Reservation;
-import wallylandapp.model.Schedule;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+/**
+ *
+ * @author marcusb
+ */
 public class ReservationView {
+
     private JPanel panel;
-    private JTextField nameField;
-    private JTextField dateField;
-    private JTextField timeField;
-    private JButton addButton;
-    private JTextArea reservationList;
+    private JLabel headingLabel;
+    private JTextArea reservationPrompt;
 
-    public ReservationView() {
-        panel = new JPanel(new BorderLayout());
+    private JButton submitButton;
 
-        // Input fields
-        JPanel inputPanel = new JPanel(new GridLayout(4, 2));
-        inputPanel.add(new JLabel("Reservation Name:"));
-        nameField = new JTextField();
-        inputPanel.add(nameField);
 
-        inputPanel.add(new JLabel("Date (YYYY-MM-DD):"));
-        dateField = new JTextField();
-        inputPanel.add(dateField);
+    public ReservationView(){
 
-        inputPanel.add(new JLabel("Time (HH:MM):"));
-        timeField = new JTextField();
-        inputPanel.add(timeField);
+        // Main panel with BorderLayout
+        panel = new JPanel(new FlowLayout());
 
-        addButton = new JButton("Add Reservation");
-        inputPanel.add(addButton);
 
-        // Reservation list
-        reservationList = new JTextArea(10, 30);
-        reservationList.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(reservationList);
+        //heading label
+        headingLabel = new JLabel("Make A Reservation", SwingConstants.CENTER);
+        headingLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        headingLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 
-        panel.add(inputPanel, BorderLayout.NORTH);
-        panel.add(scrollPane, BorderLayout.CENTER);
-    }
+        //Submit button
+        submitButton = new JButton("Submit Reservation");
 
-    public JPanel getPanel() {
-        return panel;
-    }
 
-    public JButton getAddButton() {
-        return addButton;
-    }
+        //panel for the input area and button with FlowLayout
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 10, 5)); // Align left, small gaps
 
-    public String getReservationName() {
-        return nameField.getText();
-    }
+        inputPanel.add(submitButton);
 
-    public String getReservationDate() {
-        return dateField.getText();
-    }
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-    public String getReservationTime() {
-        return timeField.getText();
-    }
-    
-    public void displayReservations(List<Schedule> reservations) {
-        reservationList.setText("");
-        for (Schedule res : reservations) {
-            reservationList.append("Name: " + res.getName() + ", Date: " + res.getDate() + ", Time: " + res.getTime() + "\n");
-        }
+                }
+        });
+
+
+
+        // Add components to the main panel
+        panel.add(headingLabel, BorderLayout.NORTH);
+
+
+
     }
 }

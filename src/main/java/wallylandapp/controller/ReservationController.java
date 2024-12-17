@@ -9,36 +9,26 @@ import java.awt.event.ActionListener;
 import wallylandapp.model.Reservation;
 import wallylandapp.view.ReservationView;
 
+
 /**
  *
- * @author paulk
+ * @author marcusb
  */
+
+
 public class ReservationController {
-    private Reservation reservationModel;
-    private ReservationView reservationView;
 
-    public ReservationController(Reservation reservationModel, ReservationView reservationView) {
-        this.reservationModel = reservationModel;
-        this.reservationView = reservationView;
+    private ReservationView view;
+    private Reservation data;
+    public ReservationController(Reservation data, ReservationView view) {
+        this.view = view;
+        this.data = data;
 
-        initController();
+        
     }
 
-    private void initController() {
-        reservationView.getAddButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                handleAddReservation();
-            }
-        });
-    }
+    public void initReservation(){
 
-    private void handleAddReservation() {
-        String name = reservationView.getReservationName();
-        String date = reservationView.getReservationDate();
-        String time = reservationView.getReservationTime();
-
-        reservationModel.addReservation(name, date, time);
-        reservationView.displayReservations(reservationModel.getReservations());
+       // view.getReservationArea()
     }
 }

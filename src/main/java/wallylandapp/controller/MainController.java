@@ -1,13 +1,11 @@
 package wallylandapp.controller;
 
-import wallylandapp.model.ChatbotData;
-import wallylandapp.model.Map;
-import wallylandapp.model.MapItem;
-import wallylandapp.model.User;
+import wallylandapp.model.*;
 import wallylandapp.view.ChatbotView;
 import wallylandapp.view.MainView;
 import wallylandapp.view.MapItemView;
 import wallylandapp.view.MapView;
+import wallylandapp.view.ReservationView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
  * The MainController class is responsible for controlling the main application functionality.
  * It interacts with the User model and the MainView view to manage the application's behavior.
  * It also handles the navigation between different views and controllers.
- * @Author paulk
+ * @Author paulk & marcusb
  */
 public class MainController {
     private User user;
@@ -25,6 +23,9 @@ public class MainController {
     private ChatbotController chatbotController;
     private MapController mapController;
     private MapItemController mapItemController;
+
+    private ReservationController reservationController;
+    private Reservation reservation;
 
     /**
      * Constructs a MainController object with the specified user and view.
@@ -36,10 +37,24 @@ public class MainController {
         this.view.start();
         this.user = user;
 
+        String userID = this.user.getUserId();
+
+
+
+
         // Initialize Chatbot related data
-        ChatbotData chatbotData = new ChatbotData(this.user.getUserId());
+        ChatbotData chatbotData = new ChatbotData(userID);
         ChatbotView chatbotView = new ChatbotView();
         this.chatbotController = new ChatbotController(chatbotData, chatbotView);
+
+
+        //Initialize Reservation related data
+
+        ReservationView reservationView = new ReservationView();
+        this.reservationController = new ReservationController(reservation, reservationView);
+
+
+
 
         // Initialize Map related data
         String imageUri = "/resources/map/parkmap.png";

@@ -4,26 +4,51 @@
  */
 package wallylandapp.model;
 
-import wallylandapp.model.Schedule;
-import java.util.ArrayList;
-import java.util.List;
+import wallylandapp.controller.MainController;
 
 /**
  *
- * @author paulk
+ * @author marcusb
  */
 public class Reservation {
-    private List<Schedule> reservations;
 
-    public Reservation() {
-        reservations = new ArrayList<>();
+    private String event;
+    private String userID;
+    private int reservationDate;
+    private int reservationTime;
+
+    public Reservation(String event, String userID, int reservationDate, int reservationTime ){
+
+        this.userID = userID;
+        this.reservationDate = reservationDate;
+        this.event = event;
+        this.reservationTime = reservationTime;
+
+
+
+
+
+
     }
 
-    public void addReservation(String name, String date, String time) {
-        reservations.add(new Schedule(name, date, time));
+    public void storeReservation() {
+
     }
 
-    public List<Schedule> getReservations() {
-        return reservations;
+    public void retrieveReservation(){
+
     }
+
+    public String getCustomerName(){return userID;}
+
+
+    public String getEvent(){return event;}
+
+
+    public int getReservationDate(){return reservationDate;}
+
+    //
+    public int getReservationTime(){return reservationTime;}
+
+    
 }
