@@ -19,8 +19,7 @@ import wallylandapp.model.MapItem;
 /**
  * The MapView class handles the visual representation of the map.
  */
-public class MapView {
-    private JPanel panel;
+public class MapView extends JPanel{
     private JPanel mapImage;
     private Image image;
     private List<MapItem> mapItems;
@@ -36,7 +35,7 @@ public class MapView {
      * Adds a mouse listener to handle map clicks.
      */
     public MapView() {
-        panel = new JPanel(new BorderLayout());
+        setLayout(new BorderLayout());
         mapImage = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -79,7 +78,7 @@ public class MapView {
             }
         });
 
-        panel.add(mapImage, BorderLayout.CENTER);
+        add(mapImage, BorderLayout.CENTER);
     }
 
     /**
@@ -88,15 +87,6 @@ public class MapView {
      */
     public void addObserver(MapViewObserver observer) {
         observers.add(observer);
-    }
-
-    /**
-     * Returns the main panel of the map view.
-     * 
-     * @return the main panel
-     */
-    public JPanel getPanel() {
-        return panel;
     }
 
     /**

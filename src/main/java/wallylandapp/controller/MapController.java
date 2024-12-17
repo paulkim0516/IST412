@@ -62,7 +62,7 @@ public class MapController implements MapViewObserver {
     public MapView getView() {
         return mapView;
     }
-
+    
     @Override
     public void onShowInfo(MapItem item) {
         main.showMapItemInfo(item);
@@ -70,7 +70,7 @@ public class MapController implements MapViewObserver {
 
     @Override
     public void onReserve(MapItem item) {
-        // Handle reserve action
+        main.reserveItem(item);
     }
 
     @Override

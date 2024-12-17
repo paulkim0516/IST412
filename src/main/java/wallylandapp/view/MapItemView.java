@@ -15,6 +15,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * The MapItemView class represents the view for a single map item.
+ */
 public class MapItemView extends JPanel {
     private MapItem mapItem;
     private JLabel itemInfoLabel;
@@ -27,6 +30,10 @@ public class MapItemView extends JPanel {
     private JSplitPane leftPane;
     private List<MapItemViewObserver> observers = new ArrayList<>();
 
+    /**
+     * Constructs a new MapItemView with the specified map item.
+     * @param mapItem the map item to be displayed
+     */
     public MapItemView(MapItem mapItem) {
         this.mapItem = mapItem;
         initializeComponents();
@@ -34,10 +41,17 @@ public class MapItemView extends JPanel {
         registerEventHandlers();
     }
 
+    /**
+     * Adds a map item controller as an observer to this view.
+     * @param mapItemController the controller to be added as an observer
+     */
     public void addObserver(MapItemController mapItemController) {
         observers.add(mapItemController);
     }
 
+    /**
+     * Initializes the components of the view.
+     */
     private void initializeComponents() {
         itemInfoLabel = new JLabel(mapItem.getName());
         itemInfoLabel.setFont(new Font("Dialog", Font.BOLD, 24));
@@ -57,13 +71,12 @@ public class MapItemView extends JPanel {
         itemPriceLabel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         String imagePath = mapItem.getImageUri();
-        System.out.println("Image path: " + imagePath); // Debugging statement
+
         URL imageUrl = getClass().getResource(imagePath);
         if (imageUrl != null) {
             ImageIcon itemImageIcon = new ImageIcon(imageUrl);
             itemImageLabel = new JLabel(itemImageIcon);
         } else {
-            System.err.println("Error loading image: " + imagePath); // Debugging statement
             itemImageLabel = new JLabel("Image not available");
         }
 
@@ -72,8 +85,13 @@ public class MapItemView extends JPanel {
 
         returnButton = new JButton("Return to Map");
         reserveButton = new JButton("Reserve");
+
+        itemImageLabel.repaint();
     }
 
+    /**
+     * Lays out the components of the view.
+     */
     private void layoutComponents() {
         setLayout(new BorderLayout());
 
@@ -83,12 +101,12 @@ public class MapItemView extends JPanel {
         leftPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         leftPane.setTopComponent(new JScrollPane(itemDescriptionArea));
         leftPane.setBottomComponent(itemPriceLabel);
+        leftPane.setBackground(getBackground());
         leftPane.setResizeWeight(0.8);
         leftPane.setEnabled(false);
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         splitPane.setLeftComponent(leftPane);
-        System.out.println("Image label: " + itemImageLabel); // Debugging statement
         splitPane.setRightComponent(itemImageLabel);
         splitPane.setResizeWeight(0.5); // Set the initial split ratio
 
@@ -109,6 +127,9 @@ public class MapItemView extends JPanel {
         });
     }
 
+    /**
+     * Resizes the image to fit the available space in the split pane.
+     */
     private void resizeImage() {
         int width = splitPane.getRightComponent().getWidth();
         int height = splitPane.getRightComponent().getHeight();
@@ -126,6 +147,9 @@ public class MapItemView extends JPanel {
         }
     }
 
+    /**
+     * Registers the event handlers for the view.
+     */
     private void registerEventHandlers() {
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -139,23 +163,25 @@ public class MapItemView extends JPanel {
         reserveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                handleReservation();
+                for (MapItemViewObserver observer : observers) {
+                    observer.onReserve(mapItem);
+                }
             }
         });
     }
 
-    private void handleReservation() {
-        // send to reservation view
-    }
-
+    /**
+     * Sets the image of the map item.
+     * @param imageUri the URI of the image to be displayed
+     */
     public void setImage(String imageUri) {
         URL imageUrl = getClass().getResource(imageUri);
         if (imageUrl != null) {
             ImageIcon itemImageIcon = new ImageIcon(imageUrl);
             itemImageLabel.setIcon(itemImageIcon);
             resizeImage();
+            itemImageLabel.repaint();
         } else {
-            System.err.println("Error loading image: " + imageUri); // Debugging statement
             itemImageLabel.setText("Image not available");
         }
     }

@@ -3,32 +3,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package wallylandapp.controller;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import wallylandapp.model.Reservation;
 import wallylandapp.view.ReservationView;
 
-
 /**
- *
+ * The ReservationController class manages the interactions between the Reservation model and ReservationView.
  * @author marcusb
  */
-
-
 public class ReservationController {
 
     private ReservationView view;
     private Reservation data;
-    public ReservationController(Reservation data, ReservationView view) {
+    private MainController main;
+
+    /**
+     * Constructs a new ReservationController with the specified reservation and reservation view.
+     * @param data the reservation to be controlled
+     * @param view the view associated with the reservation
+     */
+    public ReservationController(Reservation data, ReservationView view, MainController main) {
         this.view = view;
         this.data = data;
+        this.main = main;
 
-        
+        view.getSubmitButton().addActionListener(e -> {
+            data.setTime(view.getSelectedTime());
+            data.setTicketCount(view.getTicketCount());
+
+            main.purchaseItem(data);
+        });
     }
 
-    public void initReservation(){
-
-       // view.getReservationArea()
+    /**
+     * Gets the view of the reservation
+     * @return the view of the reservation
+     */
+    public ReservationView getView() {
+        return view;
     }
 }

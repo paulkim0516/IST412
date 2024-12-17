@@ -9,6 +9,7 @@ package wallylandapp.model;
  * @author paulk
  */
 public class MapItem {
+    private int id;
     private String name;
     private String description;
     private String imageUri;
@@ -24,13 +25,23 @@ public class MapItem {
      * @param latitude    the latitude of the map item
      * @param longitude   the longitude of the map item
      */
-    public MapItem(String name, String description, String imageUri, double latitude, double longitude, int priceCents) {
+    public MapItem(int id, String name, String description, String imageUri, double latitude, double longitude, int priceCents) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.imageUri = imageUri;
         this.latitude = latitude;
         this.longitude = longitude;
         this.priceCents = priceCents;
+    }
+
+    /**
+     * Returns the ID of the map item.
+     * 
+     * @return the ID of the map item
+     */
+    public int getId() {
+        return id;
     }
 
     /**

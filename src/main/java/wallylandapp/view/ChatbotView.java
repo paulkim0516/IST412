@@ -15,21 +15,23 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
- *
+ * The ChatbotView class represents the view for the chatbot interface.
  * @author paulk & marcusb
  */
-public class ChatbotView {
-    private JPanel panel;
+public class ChatbotView extends JPanel{
+
     private JLabel headingLabel;
     private JTextArea chatArea;
     private JTextField inputArea;
     private JButton sendButton;
 
-
+    /**
+     * Constructs a new ChatbotView with the chat area and input field.
+     */
     public ChatbotView() {
 
-        // Main panel with BorderLayout
-        panel = new JPanel(new BorderLayout());
+        // Set with BorderLayout
+        setLayout(new BorderLayout());
 
 
         //heading label
@@ -81,39 +83,31 @@ public class ChatbotView {
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
 
         // Add components to the main panel
-        panel.add(headingLabel, BorderLayout.NORTH);
-        panel.add(chatScrollPane, BorderLayout.CENTER);
-        panel.add(bottomPanel, BorderLayout.SOUTH);
+        add(headingLabel, BorderLayout.NORTH);
+        add(chatScrollPane, BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
+    }
 
-        /**
-        panel = new JPanel(new BorderLayout());
-        chatArea = new JTextArea();
-        inputArea = new JTextField();
-        sendButton = new JButton("Send");
-        //exitButton = new JButton("Exit");
-
-        panel.add(chatArea, BorderLayout.CENTER);
-        panel.add(inputArea, BorderLayout.SOUTH);
-        panel.add(sendButton, BorderLayout.EAST);
+    /**
+     * Gets the chat area.
+     * @return
      */
-
-
-    }
-
-
-
-    public JPanel getPanel() {
-        return panel;
-    }
-
     public JTextArea getChatArea() {
         return chatArea;
     }
 
+    /**
+     * Gets the input field.
+     * @return
+     */
     public JTextField getInputField() {
         return inputArea;
     }
 
+    /**
+     * Gets the send button.
+     * @return
+     */
     public JButton getSendButton() {
         return sendButton;
     }

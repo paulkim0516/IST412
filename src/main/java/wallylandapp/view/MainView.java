@@ -13,6 +13,7 @@ public class MainView {
     private JMenu navigationMenu;
     private JMenuItem mapMenuItem;
     private JMenuItem chatbotMenuItem;
+    private JMenuItem scheduleMenuItem;
 
     /**
      * Constructs a MainView object with the specified frame.
@@ -29,12 +30,14 @@ public class MainView {
         navigationMenu = new JMenu("Menu");
 
         // Create menu items
-        mapMenuItem = new JMenuItem("Map View");
-        chatbotMenuItem = new JMenuItem("Chatbot View");
+        mapMenuItem = new JMenuItem("Map");
+        chatbotMenuItem = new JMenuItem("Chatbot");
+        scheduleMenuItem = new JMenuItem("Schedule");
 
         // Add menu items to the navigation menu
         navigationMenu.add(mapMenuItem);
         navigationMenu.add(chatbotMenuItem);
+        navigationMenu.add(scheduleMenuItem);
 
         // Add the navigation menu to the menu bar
         menuBar.add(navigationMenu);
@@ -72,5 +75,13 @@ public class MainView {
      */
     public JMenuItem getChatbotMenuItem() {
         return chatbotMenuItem;
+    }
+
+    /**
+     * Gets the schedule menu item.
+     * @return the schedule menu item
+     */
+    public JMenuItem getScheduleMenuItem() {
+        return scheduleMenuItem;
     }
 }
