@@ -153,7 +153,11 @@ public class MapView {
         JLabel titleLabel = new JLabel(item.getName());
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titlePanel.add(titleLabel, BorderLayout.CENTER);
-        titlePanel.setBackground(Color.LIGHT_GRAY);
+
+        // UI improvements
+        titlePanel.setBackground(new Color(0, 0, 128));
+        titleLabel.setForeground(Color.LIGHT_GRAY);
+        titleLabel.setFont(new Font("Dialog", Font.BOLD, 16));
 
         // Add the title panel to the popup menu
         popupMenu.add(titlePanel);

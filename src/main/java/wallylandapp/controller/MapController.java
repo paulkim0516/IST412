@@ -65,7 +65,7 @@ public class MapController implements MapViewObserver {
 
     @Override
     public void onShowInfo(MapItem item) {
-        // Handle show info action
+        main.showMapItemInfo(item);
     }
 
     @Override

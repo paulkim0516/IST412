@@ -11,8 +11,10 @@ package wallylandapp.model;
 public class MapItem {
     private String name;
     private String description;
+    private String imageUri;
     private double latitude;
     private double longitude;
+    private int priceCents;
     
     /**
      * Constructs a MapItem object with the specified name, description, latitude, and longitude.
@@ -22,11 +24,13 @@ public class MapItem {
      * @param latitude    the latitude of the map item
      * @param longitude   the longitude of the map item
      */
-    public MapItem(String name, String description, double latitude, double longitude) {
+    public MapItem(String name, String description, String imageUri, double latitude, double longitude, int priceCents) {
         this.name = name;
         this.description = description;
+        this.imageUri = imageUri;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.priceCents = priceCents;
     }
 
     /**
@@ -99,5 +103,41 @@ public class MapItem {
      */
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    /**
+     * Returns the price of the map item in cents.
+     * 
+     * @return the price of the map item in cents
+     */
+    public int getPriceCents() {
+        return priceCents;
+    }
+
+    /**
+     * Sets the price of the map item in cents.
+     * 
+     * @param priceCents the price of the map item in cents
+     */
+    public void setPriceCents(int priceCents) {
+        this.priceCents = priceCents;
+    }
+
+    /**
+     * Returns the image source of the map item.
+     * 
+     * @return the image source of the map item
+     */
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    /**
+     * Sets the image source of the map item.
+     * 
+     * @param imageUri the image source of the map item
+     */
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 }

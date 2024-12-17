@@ -9,5 +9,25 @@ package wallylandapp.model;
  * @author paulk
  */
 public class Schedule {
-    
+    private String name;
+    private String date;
+    private String time;
+
+    public Schedule(String name, String date, String time) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
 }
